@@ -12,7 +12,7 @@ First install dependencies:
 
 npm ci
 
-To run in hot module reloading mode:
+To run in module reloading mode:
 
 npm start
 
