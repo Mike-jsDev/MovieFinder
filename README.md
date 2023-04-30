@@ -1,5 +1,6 @@
-# MovieFinder
-SkillUp-proj
+# moviefinder
+
+Empty project.
 
 ## Enviroments
 
@@ -12,7 +13,7 @@ First install dependencies:
 
 npm ci
 
-To run in module reloading mode:
+To run in hot module reloading mode:
 
 npm start
 
@@ -41,6 +42,6 @@ npm test
 API_URL=xxx
 API_KEY_3=xxx
 API_KEY_4=xxx
+POSTER_URL=xxx
 
 Please contact the admin to get the keys!
-

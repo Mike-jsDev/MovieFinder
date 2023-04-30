@@ -59,10 +59,16 @@ const config = {
       favicon: './public/favicon.png',
     }),
     new MiniCssExtractPlugin(),
-    new Dotenv(),
+    new Dotenv('.env'),
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@images': path.resolve(__dirname, 'src/images'),
+      '@theme': path.resolve(__dirname, 'src/theme'),
+      '@interfaces': path.resolve(__dirname, 'src/interfaces'),
+    },
   },
 };
 
