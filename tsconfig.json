@@ -14,8 +14,14 @@
     "baseUrl": "src/",
     "paths": {
       "@components/*": ["components/*"],
+      "@pages/*": ["pages/*"],
       "@images/*": ["images/*"],
-      "@theme/*": ["theme/*"]
+      "@theme/*": ["theme/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@businessLogic/*": ["businessLogic/*"],
+      "@redux/*": ["redux/*"],
+      "@constants/*": ["constants/*"],
+      "@utils/*": ["utils/*"],
     }
   },
   "include": ["./src/**/*", "d.ts"]

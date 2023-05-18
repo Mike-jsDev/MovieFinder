@@ -1,36 +1,35 @@
 import { FC } from 'react';
-import Home from './pages/Home';
-import Movies from './pages/Movies';
-import Tv from './pages/Tv';
+import { MoviePage } from '@pages/MoviePage';
+import { DetailsPage } from '@pages/DetailsPage';
 
 interface Route {
   key: string;
   title: string;
   path: string;
-  enabled: boolean;
+  enabledToHeader: boolean;
   component: FC<object>;
 }
 
 export const routes: Array<Route> = [
   {
-    key: 'home-route',
-    title: 'Home',
-    path: '/',
-    enabled: true,
-    component: Home,
+    key: 'details-page-route',
+    title: 'Details Page',
+    path: ':movieType/:id',
+    enabledToHeader: false,
+    component: DetailsPage,
   },
   {
     key: 'movies-route',
     title: 'Movies',
-    path: '/movies',
-    enabled: true,
-    component: Movies,
+    path: 'movies',
+    enabledToHeader: true,
+    component: MoviePage,
   },
   {
     key: 'tv-route',
-    title: 'Tv',
-    path: '/tv-series',
-    enabled: true,
-    component: Tv,
+    title: 'Tv Series',
+    path: 'tv-series',
+    enabledToHeader: true,
+    component: MoviePage,
   },
 ];

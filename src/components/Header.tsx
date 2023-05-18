@@ -1,14 +1,6 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
-import {
-  AppBar,
-  Avatar,
-  Box,
-  Container,
-  Grid,
-  Toolbar,
-  Typography,
-} from '@mui/material';
+import { Link, NavLink } from 'react-router-dom';
+import { AppBar, Avatar, Box, Container, Grid, Toolbar, Typography } from '@mui/material';
 import { routes } from '../routes';
 import logo from '@images/logo.svg';
 import { styled } from '@mui/material/styles';
@@ -24,10 +16,13 @@ const LinkTitle = styled(Typography)(
   :focus {
     color:  ${theme.palette.custom.electricViolet};
   }
+  .active & {
+    color:  ${theme.palette.custom.electricViolet};
+  }
 `,
 );
 
-const Header: FC = () => {
+export const Header: FC = () => {
   return (
     <AppBar
       position='sticky'
@@ -40,27 +35,28 @@ const Header: FC = () => {
         <Toolbar>
           <Box sx={{ marginRight: '1rem' }}>
             <Link to='/'>
-              <Avatar
-                alt='logo'
-                src={logo}
-                sx={{ maxWidth: 50 }}
-                variant='square'
-              />
+              <Avatar alt='logo' src={logo} sx={{ maxWidth: 50 }} variant='square' />
             </Link>
           </Box>
           <Grid container spacing={2}>
-            {routes.map((page) => (
-              <Grid item key={page.key}>
-                <Link to={page.path} style={{ textDecoration: 'none' }}>
-                  <LinkTitle>{page.title}</LinkTitle>
-                </Link>
-              </Grid>
-            ))}
+            <Grid item key='home-route'>
+              <NavLink to='/' style={{ textDecoration: 'none' }}>
+                <LinkTitle>Home</LinkTitle>
+              </NavLink>
+            </Grid>
+            {routes.map(
+              (page) =>
+                page.enabledToHeader && (
+                  <Grid item key={page.key}>
+                    <NavLink to={page.path} style={{ textDecoration: 'none' }}>
+                      <LinkTitle>{page.title}</LinkTitle>
+                    </NavLink>
+                  </Grid>
+                ),
+            )}
           </Grid>
         </Toolbar>
       </Container>
     </AppBar>
   );
 };
-
-export default Header;

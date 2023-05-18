@@ -2,12 +2,15 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Stack, Typography } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import CircularRate from './CircularRate';
-import { Movie } from 'appInterfaces/interfaces';
+import { CircularRate } from './CircularRate';
+import placeholder from '@images/placeholder.svg';
+import { Movie } from '@interfaces/app/interfaces';
+import { MovieType } from '@interfaces/app/enums';
 import { styled } from '@mui/material/styles';
 import { theme } from '@theme/global-styles';
 
 const Card = styled(Box)`
+  position: relative;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -47,41 +50,32 @@ const CardInfo = styled(Box)`
   position: absolute;
   opacity: 0;
   bottom: -20px;
-  width: 100%;
+  width: auto;
   height: max-content;
   padding: 2rem 1rem;
   transition: all 0.3s ease;
 `;
 
-const MovieCard: FC<{ movie: Movie }> = ({ movie }) => {
-  const {
-    vote_average,
-    release_date,
-    title,
-    first_air_date,
-    name,
-    poster_path,
-  } = movie;
+export const MovieCard: FC<{ movie: Movie; movieType: MovieType }> = ({ movie, movieType }) => {
+  const { id, vote_average, release_date, title, first_air_date, name, poster_path } = movie;
+
+  const backgroundImage = poster_path ? `url(${process.env.POSTER_URL}${poster_path})` : `url(${placeholder})`;
 
   return (
-    <Link to={'#'}>
+    <Link to={`../${movieType}/${id}`} relative='path'>
       <Card
         style={{
-          backgroundImage: `url(${process.env.POSTER_URL}${poster_path})`,
+          backgroundImage: `${backgroundImage}`,
         }}
       >
         <FavoriteIconBox>
-          <FavoriteIcon
-            sx={{ fontSize: '2rem', color: 'custom.electricViolet' }}
-          />
+          <FavoriteIcon sx={{ fontSize: '2rem', color: 'custom.fuchsia' }} />
         </FavoriteIconBox>
         <CardBackDrop className='card-back-drop' />
         <CardInfo className='card-info'>
           <Stack spacing={{ xs: 1, md: 2 }}>
             <CircularRate value={vote_average} />
-            <Typography variant='body1'>
-              {release_date || first_air_date}
-            </Typography>
+            <Typography variant='body1'>{release_date || first_air_date}</Typography>
             <Typography variant='h5' fontWeight='700'>
               {title || name}
             </Typography>
@@ -91,5 +85,3 @@ const MovieCard: FC<{ movie: Movie }> = ({ movie }) => {
     </Link>
   );
 };
-
-export default MovieCard;
