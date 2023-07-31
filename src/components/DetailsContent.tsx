@@ -1,16 +1,18 @@
 import { FC, useState } from 'react';
+import { Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { sliderStyles } from '@constants/sliderStyles';
+import placeholder from '@images/placeholder.svg';
+import { IMovieDetails } from '@interfaces/app/interfaces';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { Box, Button, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import { MovieDetails } from '@interfaces/app/interfaces';
-import { CircularRate } from './CircularRate';
+
 import { CarouselContainer } from './CarouselContainer';
-import { TrailerPopup } from './TrailerPopup';
 import { CastCard } from './CastCard';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper';
-import placeholder from '@images/placeholder.svg';
-import { sliderStyles } from '@constants/sliderStyles';
+import { CircularRate } from './CircularRate';
+import { TrailerPopup } from './TrailerPopup';
 
 const Section = styled(Box)`
   box-sizing: border-box;
@@ -54,7 +56,8 @@ const BottomContent = styled(Box)`
   display: block;
 `;
 
-export const DetailsContent: FC<{ contentInfo: MovieDetails }> = ({ contentInfo }) => {
+export const DetailsContent: FC<{ contentInfo: IMovieDetails }> = ({ contentInfo }) => {
+
   const { id, title, overview, genres, release_date, last_air_date, poster_path, casts, credits, vote_average } =
     contentInfo;
 

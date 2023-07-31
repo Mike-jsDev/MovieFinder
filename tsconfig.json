@@ -22,6 +22,8 @@
       "@redux/*": ["redux/*"],
       "@constants/*": ["constants/*"],
       "@utils/*": ["utils/*"],
+      "@hooks/*": ["hooks/*"],
+      "@validations/*": ["validations/*"],
     }
   },
   "include": ["./src/**/*", "d.ts"]

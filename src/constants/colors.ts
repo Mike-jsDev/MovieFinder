@@ -6,4 +6,5 @@ export const customColors = {
   electricViolet: '#7600FF',
   aqua: '#0FEFFD',
   fuchsia: '#FF00F5',
+  redAlert: '#ED0813',
 };

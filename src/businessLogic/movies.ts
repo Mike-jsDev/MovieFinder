@@ -1,11 +1,14 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { getAllCategorizedMovieApi, getAllDetailsApi, getAllDiscoverMovieApi } from '../api/movies';
-import { ConfigTypes, Movie, MovieDetails } from '@interfaces/app/interfaces';
+
 import { MovieType } from '@interfaces/app/enums';
+import { IConfigTypes, IMovie, IMovieDetails } from '@interfaces/app/interfaces';
+
+import { getAllCategorizedMovieApi, getAllDetailsApi, getAllDiscoverMovieApi } from '../api/movies';
+
 import 'react-toastify/dist/ReactToastify.min.css';
 
-export const getCategorizedMovies = async ({ movieType, movieCategory, page }: ConfigTypes): Promise<Movie[]> => {
+export const getCategorizedMovies = async ({ movieType, movieCategory, page }: IConfigTypes): Promise<IMovie[]> => {
   try {
     const response = await getAllCategorizedMovieApi({
       movieType,
@@ -30,7 +33,8 @@ export const getMovieDetailsById = async ({
 }: {
   id: number;
   movieType: MovieType;
-}): Promise<MovieDetails | null> => {
+}): Promise<IMovieDetails | null> => {
+
   try {
     const response = await getAllDetailsApi({ id, movieType });
 
@@ -45,7 +49,11 @@ export const getMovieDetailsById = async ({
   }
 };
 
-export const getDiscoverMovies = async ({ movieType, page }: Omit<ConfigTypes, 'movieCategory'>): Promise<Movie[]> => {
+export const getDiscoverMovies = async ({
+  movieType,
+  page,
+}: Omit<IConfigTypes, 'movieCategory'>): Promise<IMovie[]> => {
+
   try {
     const response = await getAllDiscoverMovieApi({ movieType, page });
 

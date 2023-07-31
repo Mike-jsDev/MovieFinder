@@ -1,13 +1,15 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Stack, Typography } from '@mui/material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import { CircularRate } from './CircularRate';
+
 import placeholder from '@images/placeholder.svg';
-import { Movie } from '@interfaces/app/interfaces';
 import { MovieType } from '@interfaces/app/enums';
+import { IMovie } from '@interfaces/app/interfaces';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { Box, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { theme } from '@theme/global-styles';
+
+import { CircularRate } from './CircularRate';
 
 const Card = styled(Box)`
   position: relative;
@@ -56,7 +58,7 @@ const CardInfo = styled(Box)`
   transition: all 0.3s ease;
 `;
 
-export const MovieCard: FC<{ movie: Movie; movieType: MovieType }> = ({ movie, movieType }) => {
+export const MovieCard: FC<{ movie: IMovie; movieType: MovieType }> = ({ movie, movieType }) => {
   const { id, vote_average, release_date, title, first_air_date, name, poster_path } = movie;
 
   const backgroundImage = poster_path ? `url(${process.env.POSTER_URL}${poster_path})` : `url(${placeholder})`;

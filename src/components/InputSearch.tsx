@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import { Divider, IconButton, InputBase, Paper } from '@mui/material';
+
 import SearchIcon from '@mui/icons-material/Search';
+import { Divider, IconButton, InputBase, Paper } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 const SearchBox = styled(Paper)`

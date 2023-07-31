@@ -1,7 +1,9 @@
 import { FC } from 'react';
-import { Box, Stack, Typography } from '@mui/material';
-import { Cast } from '@interfaces/app/interfaces';
+
 import placeholder from '@images/placeholder.svg';
+import { ICast } from '@interfaces/app/interfaces';
+import { Box, Stack, Typography } from '@mui/material';
+
 import { styled } from '@mui/material/styles';
 import { theme } from '@theme/global-styles';
 
@@ -46,7 +48,8 @@ const CardInfo = styled(Box)`
   transition: all 0.3s ease;
 `;
 
-export const CastCard: FC<{ person: Cast }> = ({ person }) => {
+export const CastCard: FC<{ person: ICast }> = ({ person }) => {
+
   const { name, profile_path, character } = person;
 
   const backgroundImage = profile_path ? `url(${process.env.POSTER_URL}${profile_path})` : `url(${placeholder})`;

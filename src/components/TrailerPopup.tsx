@@ -1,12 +1,13 @@
 import { FC } from 'react';
-import { VideosResults } from '@interfaces/app/interfaces';
-import { Button, Dialog, DialogActions, DialogContent, Typography } from '@mui/material';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
-import { sliderStyles } from '@constants/sliderStyles';
-import { baseVideoUrl } from '@constants/index';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-export const TrailerPopup: FC<{ videos: VideosResults[]; isOpen: boolean; handleClose: () => void }> = ({
+import { baseVideoUrl } from '@constants/index';
+import { sliderStyles } from '@constants/sliderStyles';
+import { IVideosResults } from '@interfaces/app/interfaces';
+import { Button, Dialog, DialogActions, DialogContent, Typography } from '@mui/material';
+
+export const TrailerPopup: FC<{ videos: IVideosResults[]; isOpen: boolean; handleClose: () => void }> = ({
   videos,
   isOpen,
   handleClose,

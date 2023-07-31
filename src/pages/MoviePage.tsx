@@ -1,15 +1,16 @@
 import { FC, useCallback, useEffect, useState } from 'react';
-import { Box, Container, Pagination, Stack } from '@mui/material';
-import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsLoading } from '@redux/actions';
-import { Banner } from '@components/Banner';
-import { MovieCard } from '@components/MovieCard';
-import { Loader } from '@components/Loader';
-import { MovieType } from '@interfaces/app/enums';
-import { Movie } from '@interfaces/app/interfaces';
-import { LoadingState } from '@interfaces/redux/interfaces';
+import { useLocation } from 'react-router-dom';
+
 import { getDiscoverMovies } from '@businessLogic/movies';
+import { Banner } from '@components/Banner';
+import { Loader } from '@components/Loader';
+import { MovieCard } from '@components/MovieCard';
+import { MovieType } from '@interfaces/app/enums';
+import { IMovie } from '@interfaces/app/interfaces';
+import { IRootState } from '@interfaces/redux/interfaces';
+import { Box, Container, Pagination, Stack } from '@mui/material';
+import { setIsLoading } from '@redux/actions/loadingAction';
 import { getRandomBackground } from '@utils/getRandomBackground';
 
 export const MoviePage: FC = () => {
@@ -17,16 +18,17 @@ export const MoviePage: FC = () => {
 
   const movieType = location === '/movies' ? MovieType.Movie : MovieType.Tv;
   const dispatch = useDispatch();
-  const isLoading = useSelector((state: LoadingState) => {
-    return state.isLoading;
+  const isLoading = useSelector((state: IRootState) => {
+    return state.loadingReducer.isLoading;
   });
 
-  const [discoverMovies, setDiscoverMovies] = useState<Movie[]>([]);
+  const [discoverMovies, setDiscoverMovies] = useState<IMovie[]>([]);
   const [page, setPage] = useState(1);
   const [randomBackground, setRandomBackground] = useState<string>('');
 
   const getInfo = useCallback(
     async (page: number): Promise<void> => {
+      dispatch(setIsLoading(true));
       const results = await getDiscoverMovies({ movieType, page });
       if (results) {
         setDiscoverMovies(results);

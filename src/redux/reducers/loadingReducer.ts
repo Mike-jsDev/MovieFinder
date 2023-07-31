@@ -1,11 +1,12 @@
 import { ILoadingState } from '@interfaces/redux/interfaces';
-import { SET_IS_LOADING } from './actions';
+
+import { SET_IS_LOADING } from '../actions/loadingAction';
 
 const initialState = {
-  isLoading: true,
+  isLoading: false,
 };
 
-const rootReducer = (
+export const loadingReducer = (
   state = { ...initialState },
   action: {
     payload: boolean;
@@ -21,5 +22,3 @@ const rootReducer = (
       return state;
   }
 };
-
-export default rootReducer;

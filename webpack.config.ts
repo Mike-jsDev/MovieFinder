@@ -73,6 +73,8 @@ const config = {
       '@redux': path.resolve(__dirname, 'src/redux'),
       '@constants': path.resolve(__dirname, 'src/constants'),
       '@utils': path.resolve(__dirname, 'src/utils'),
+      '@hooks': path.resolve(__dirname, 'src/hooks'),
+      '@validations': path.resolve(__dirname, 'src/validations'),
     },
   },
 };

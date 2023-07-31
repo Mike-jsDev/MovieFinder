@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { Box, Container, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { theme } from '@theme/global-styles';

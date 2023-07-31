@@ -1,8 +1,10 @@
 import { FC } from 'react';
-import { Box, Container, Typography } from '@mui/material';
+
 import backgroundImg from '@images/mainSectionBg.jpg';
-import { InputSearch } from './InputSearch';
+import { Box, Container, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+
+import { InputSearch } from './InputSearch';
 
 const SectionBox = styled(Box)`
   background-image: url('${backgroundImg}');

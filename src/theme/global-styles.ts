@@ -1,5 +1,5 @@
-import { createTheme } from '@mui/material';
 import { customColors } from '@constants/colors';
+import { createTheme } from '@mui/material';
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -9,6 +9,7 @@ declare module '@mui/material/styles' {
       electricViolet: string;
       aqua: string;
       fuchsia: string;
+      redAlert: string;
     };
   }
   interface PaletteOptions {
@@ -18,6 +19,7 @@ declare module '@mui/material/styles' {
       electricViolet: string;
       aqua: string;
       fuchsia: string;
+      redAlert: string;
     };
   }
 }
@@ -31,6 +33,27 @@ export const theme = createTheme({
           color: customColors.white,
           '& h1': {
             textAlign: 'center',
+          },
+          '.MuiFormControl-root': {
+            '.MuiInputLabel-root': {
+              color: customColors.electricViolet,
+              textTransform: 'capitalize',
+            },
+            '.MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: customColors.electricViolet,
+              },
+              '&:hover fieldset': {
+                borderColor: customColors.electricViolet,
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: customColors.electricViolet,
+              },
+            },
+            '.MuiFormHelperText-root': {
+              color: customColors.redAlert,
+              fontSize: '14px',
+            },
           },
         },
       },
@@ -82,6 +105,7 @@ export const theme = createTheme({
       electricViolet: customColors.electricViolet,
       aqua: customColors.aqua,
       fuchsia: customColors.fuchsia,
+      redAlert: customColors.redAlert,
     },
   },
 });

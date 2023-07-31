@@ -1,23 +1,21 @@
 import { FC, useCallback, useEffect, useState } from 'react';
-import { getCategorizedMovies } from '@businessLogic/movies';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
-import { MovieCard } from './MovieCard';
-import { CarouselContainer } from './CarouselContainer';
-import { ConfigTypes, Movie } from '@interfaces/app/interfaces';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { getCategorizedMovies } from '@businessLogic/movies';
 import { sliderStyles } from '@constants/sliderStyles';
+import { ICarouselProps, IMovie } from '@interfaces/app/interfaces';
+
+import { CarouselContainer } from './CarouselContainer';
+import { MovieCard } from './MovieCard';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-interface CarouselProps {
-  config: ConfigTypes;
-  sectionTitle: string;
-}
-
-export const Carousel: FC<CarouselProps> = ({ config, sectionTitle }) => {
+export const Carousel: FC<ICarouselProps> = ({ config, sectionTitle }) => {
   const { movieType, movieCategory } = config;
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const [movies, setMovies] = useState<IMovie[]>([]);
 
   const getAllCategorizedMovies = useCallback(async () => {
     const response = await getCategorizedMovies({ movieType, movieCategory });
@@ -40,7 +38,7 @@ export const Carousel: FC<CarouselProps> = ({ config, sectionTitle }) => {
         style={sliderStyles}
         modules={[Pagination]}
       >
-        {movies?.map((movie: Movie) => (
+        {movies?.map((movie: IMovie) => (
           <SwiperSlide key={movie.id}>
             <MovieCard movie={movie} movieType={movieType} />
           </SwiperSlide>

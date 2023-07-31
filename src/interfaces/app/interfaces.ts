@@ -1,6 +1,17 @@
-import { MovieType } from './enums';
+import { ReactElement } from 'react';
 
-export interface Movie {
+import { MovieType } from './enums';
+export interface IAppRoute {
+  key: string;
+  title: string;
+  path: string;
+  enabledToHeader: boolean;
+  private: boolean;
+  navigateTo?: string;
+  component: ReactElement;
+}
+
+export interface IMovie {
   id: number;
   title: string;
   name?: string;
@@ -12,48 +23,68 @@ export interface Movie {
   backdrop_path?: string;
 }
 
-export interface ConfigTypes {
+export interface IConfigTypes {
   movieType: MovieType;
   movieCategory: string;
   page?: number;
   sortBy?: string;
 }
 
-export interface Genre {
+export interface IGenre {
   id: number;
   name: string;
 }
 
-export interface Cast {
+export interface ICast {
   id: number;
   name: string;
   profile_path: string;
   character: string;
 }
 
-export interface VideosResults {
+export interface IVideosResults {
   id: string;
   key: string;
   name: string;
 }
 
-export interface MovieDetails {
+export interface IMovieDetails {
   id: number;
   title: string;
   overview: string;
-  genres: Genre[];
+  genres: IGenre[];
   release_date: string;
   last_air_date: string;
   casts?: {
-    cast: Cast[];
+    cast: ICast[];
   };
   credits?: {
-    cast: Cast[];
+    cast: ICast[];
   };
   backdrop_path: string;
   poster_path: string;
   vote_average: number;
   videos: {
-    results: VideosResults[];
+    results: IVideosResults[];
   };
+}
+
+export interface ICarouselProps {
+  config: IConfigTypes;
+  sectionTitle: string;
+}
+
+export interface IFormAttributes {
+  id: string;
+  label: string;
+  type: string;
+  name: string;
+  isFullWidth?: boolean;
+  value?: string;
+}
+
+export interface IFormValues {
+  email: string;
+  password: string;
+  confirmPassword?: string;
 }
