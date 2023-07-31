@@ -7,6 +7,7 @@ export enum PathType {
   PathFavorites = '/favorites',
   PathNotFound = '*',
 }
+
 export enum RouteKeyType {
   RouteHome = '/',
   RouteLogin = 'login-route',
@@ -27,3 +28,4 @@ export enum FormType {
   Login = 'login',
   Register = 'register',
 }
+

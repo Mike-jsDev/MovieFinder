@@ -57,6 +57,7 @@ const BottomContent = styled(Box)`
 `;
 
 export const DetailsContent: FC<{ contentInfo: IMovieDetails }> = ({ contentInfo }) => {
+
   const { id, title, overview, genres, release_date, last_air_date, poster_path, casts, credits, vote_average } =
     contentInfo;
 

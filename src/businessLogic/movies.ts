@@ -34,6 +34,7 @@ export const getMovieDetailsById = async ({
   id: number;
   movieType: MovieType;
 }): Promise<IMovieDetails | null> => {
+
   try {
     const response = await getAllDetailsApi({ id, movieType });
 
@@ -52,6 +53,7 @@ export const getDiscoverMovies = async ({
   movieType,
   page,
 }: Omit<IConfigTypes, 'movieCategory'>): Promise<IMovie[]> => {
+
   try {
     const response = await getAllDiscoverMovieApi({ movieType, page });
 
