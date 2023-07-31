@@ -3,6 +3,14 @@ import { Box, Container, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { theme } from '@theme/global-styles';
 
+const SwipeContainer = styled(Container)`
+  &[data-page='homePage'] {
+    margin-bottom: 4rem;
+  }
+  &[data-page='detailsPage'] {
+    padding: 0;
+  }
+`;
 const TitleBox = styled(Box)`
   position: relative;
   width: 100%;
@@ -18,14 +26,15 @@ const TitleBox = styled(Box)`
   }
 `;
 
-interface Props {
+interface CarouselContainerProps {
   title: string;
+  dataPage?: string;
   children?: React.ReactNode;
 }
 
-const CarouselContainer: FC<Props> = ({ title, children }) => {
+export const CarouselContainer: FC<CarouselContainerProps> = ({ title, children, dataPage = 'homePage' }) => {
   return (
-    <Container sx={{ marginTop: '2rem' }}>
+    <SwipeContainer data-page={dataPage}>
       <Stack spacing={4}>
         <TitleBox>
           <Typography variant='h5' fontWeight='700' textTransform='uppercase'>
@@ -34,8 +43,6 @@ const CarouselContainer: FC<Props> = ({ title, children }) => {
         </TitleBox>
         {children}
       </Stack>
-    </Container>
+    </SwipeContainer>
   );
 };
-
-export default CarouselContainer;

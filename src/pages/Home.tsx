@@ -1,30 +1,15 @@
 import { FC } from 'react';
-import MainSection from '@components/MainSection';
-import Carousel from '@components/Carousel';
-import { mediaConfigs } from '../constants';
+import { MainSection } from '@components/MainSection';
+import { Carousel } from '@components/Carousel';
+import { homePageCarouselData } from '@constants/index';
 
-const Home: FC = () => {
+export const Home: FC = () => {
   return (
     <>
       <MainSection />
-      <Carousel
-        movieType={mediaConfigs.mediaType.movie}
-        movieCategory={mediaConfigs.mediaCategory.popular}
-      />
-      <Carousel
-        movieType={mediaConfigs.mediaType.tv}
-        movieCategory={mediaConfigs.mediaCategory.popular}
-      />
-      <Carousel
-        movieType={mediaConfigs.mediaType.movie}
-        movieCategory={mediaConfigs.mediaCategory.top_rated}
-      />
-      <Carousel
-        movieType={mediaConfigs.mediaType.tv}
-        movieCategory={mediaConfigs.mediaCategory.top_rated}
-      />
+      {homePageCarouselData.map((carousel) => (
+        <Carousel key={carousel.sectionTitle} config={carousel.config} sectionTitle={carousel.sectionTitle} />
+      ))}
     </>
   );
 };
-
-export default Home;

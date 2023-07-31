@@ -12,15 +12,10 @@ const SearchBox = styled(Paper)`
   width: 400px;
 `;
 
-const InputSearch: FC = () => {
+export const InputSearch: FC = () => {
   return (
     <SearchBox>
-      <InputBase
-        disabled={true}
-        sx={{ ml: 1, flex: 1 }}
-        placeholder='Search'
-        inputProps={{ 'aria-label': 'search' }}
-      />
+      <InputBase disabled={true} sx={{ ml: 1, flex: 1 }} placeholder='Search' inputProps={{ 'aria-label': 'search' }} />
       <Divider sx={{ height: 28, m: 0.5 }} orientation='vertical' />
       <IconButton type='button' sx={{ p: '10px' }} aria-label='search'>
         <SearchIcon />
@@ -28,5 +23,3 @@ const InputSearch: FC = () => {
     </SearchBox>
   );
 };
-
-export default InputSearch;

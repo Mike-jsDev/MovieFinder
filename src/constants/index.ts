@@ -1,6 +1,8 @@
+import { MovieType } from '@interfaces/app/enums';
+
 const mediaType = {
-  movie: 'movie',
-  tv: 'tv',
+  movie: MovieType.Movie,
+  tv: MovieType.Tv,
 };
 
 const mediaCategory = {
@@ -13,4 +15,35 @@ const mediaConfigs = {
   mediaCategory,
 };
 
-export { mediaConfigs };
+export const baseVideoUrl = 'https://www.youtube-nocookie.com/embed/';
+
+export const homePageCarouselData = [
+  {
+    config: {
+      movieType: mediaConfigs.mediaType.movie,
+      movieCategory: mediaConfigs.mediaCategory.popular,
+    },
+    sectionTitle: 'POPULAR MOVIE',
+  },
+  {
+    config: {
+      movieType: mediaConfigs.mediaType.tv,
+      movieCategory: mediaConfigs.mediaCategory.popular,
+    },
+    sectionTitle: 'POPULAR SERIALS',
+  },
+  {
+    config: {
+      movieType: mediaConfigs.mediaType.movie,
+      movieCategory: mediaConfigs.mediaCategory.top_rated,
+    },
+    sectionTitle: 'TOP RATED MOVIE',
+  },
+  {
+    config: {
+      movieType: mediaConfigs.mediaType.tv,
+      movieCategory: mediaConfigs.mediaCategory.top_rated,
+    },
+    sectionTitle: 'TOP RATED SERIALS',
+  },
+];
