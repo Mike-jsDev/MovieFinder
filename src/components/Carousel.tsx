@@ -1,42 +1,49 @@
-import { FC, useEffect, useState } from 'react';
-import { getMovies } from '../businessLogic/movies';
+import { FC, useCallback, useEffect, useState } from 'react';
+import { Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import MovieCard from './MovieCard';
-import CarouselContainer from './CarouselContainer';
-import { ConfigTypes, Movie } from 'appInterfaces/interfaces';
+
+import { getCategorizedMovies } from '@businessLogic/movies';
+import { sliderStyles } from '@constants/sliderStyles';
+import { ICarouselProps, IMovie } from '@interfaces/app/interfaces';
+
+import { CarouselContainer } from './CarouselContainer';
+import { MovieCard } from './MovieCard';
+
 import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
-const Carousel: FC<ConfigTypes> = ({ movieType, movieCategory }) => {
-  const sectionTitle = `${movieCategory.replace('_', ' ')} ${movieType.replace(
-    'tv',
-    'serials',
-  )} `;
+export const Carousel: FC<ICarouselProps> = ({ config, sectionTitle }) => {
+  const { movieType, movieCategory } = config;
+  const [movies, setMovies] = useState<IMovie[]>([]);
 
-  const [movies, setMovies] = useState<Movie[]>([]);
-
-  const getAllMovies = async (): Promise<void> => {
-    const response = await getMovies({ movieType, movieCategory });
+  const getAllCategorizedMovies = useCallback(async () => {
+    const response = await getCategorizedMovies({ movieType, movieCategory });
 
     if (response) {
       setMovies(response);
     }
-  };
-
-  useEffect(() => {
-    getAllMovies();
   }, [movieType, movieCategory]);
 
+  useEffect(() => {
+    getAllCategorizedMovies();
+  }, [getAllCategorizedMovies]);
+
   return movies.length ? (
-    <CarouselContainer title={sectionTitle}>
-      <Swiper spaceBetween={40} slidesPerView={4}>
-        {movies?.map((movie: Movie) => (
+    <CarouselContainer title={sectionTitle} dataPage='homePage'>
+      <Swiper
+        spaceBetween={20}
+        slidesPerView={4}
+        pagination={{ dynamicBullets: true, clickable: true }}
+        style={sliderStyles}
+        modules={[Pagination]}
+      >
+        {movies?.map((movie: IMovie) => (
           <SwiperSlide key={movie.id}>
-            <MovieCard movie={movie} />
+            <MovieCard movie={movie} movieType={movieType} />
           </SwiperSlide>
         ))}
       </Swiper>
     </CarouselContainer>
   ) : null;
 };
-
-export default Carousel;

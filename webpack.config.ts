@@ -65,9 +65,16 @@ const config = {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
       '@components': path.resolve(__dirname, 'src/components'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
       '@images': path.resolve(__dirname, 'src/images'),
       '@theme': path.resolve(__dirname, 'src/theme'),
       '@interfaces': path.resolve(__dirname, 'src/interfaces'),
+      '@businessLogic': path.resolve(__dirname, 'src/businessLogic'),
+      '@redux': path.resolve(__dirname, 'src/redux'),
+      '@constants': path.resolve(__dirname, 'src/constants'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
+      '@hooks': path.resolve(__dirname, 'src/hooks'),
+      '@validations': path.resolve(__dirname, 'src/validations'),
     },
   },
 };

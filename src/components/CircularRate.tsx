@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { Box, CircularProgress, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
@@ -19,31 +20,19 @@ const ValueBox = styled(Box)`
   justify-content: center;
 `;
 
-interface Props {
+interface CircularRateProps {
   value: number;
 }
 
-const CircularRate: FC<Props> = ({ value }) => {
+export const CircularRate: FC<CircularRateProps> = ({ value }) => {
   return (
     <ProgressBox>
-      <CircularProgress
-        variant='determinate'
-        value={Math.floor(value * 10)}
-        size={50}
-        sx={{ color: 'custom.electricViolet' }}
-      />
+      <CircularProgress variant='determinate' value={Math.floor(value * 10)} size={50} sx={{ color: 'custom.aqua' }} />
       <ValueBox>
-        <Typography
-          variant='body1'
-          component='span'
-          fontWeight='700'
-          sx={{ marginTop: '-5px' }}
-        >
-          {value}
+        <Typography variant='body1' component='span' fontWeight='700' sx={{ marginTop: '-5px' }}>
+          {Math.floor(value * 10) / 10}
         </Typography>
       </ValueBox>
     </ProgressBox>
   );
 };
-
-export default CircularRate;

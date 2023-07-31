@@ -1,34 +1,52 @@
 import { FC } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { routes as appRoutes } from './routes';
-import ErrorPage from './pages/ErrorPage';
-import Header from './components/Header';
 import { ToastContainer } from 'react-toastify';
-import { ThemeProvider } from '@mui/material/styles';
+
+import { Layout } from '@components/Layout';
+import { PrivateRoute } from '@components/PrivateRoute';
+import { appRoutes } from '@constants/routes';
+import { PathType, RouteKeyType } from '@interfaces/app/enums';
 import CssBaseline from '@mui/material/CssBaseline';
-import { theme } from './theme/global-styles';
+import { ThemeProvider } from '@mui/material/styles';
+import { Home } from '@pages/Home';
+import { theme } from '@theme/global-styles';
+
 import './styles.scss';
 
-const App: FC = () => {
+export const App: FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <ToastContainer />
       <BrowserRouter>
-        <Header />
         <Routes>
-          {appRoutes.map((route) => (
-            <Route
-              key={route.key}
-              path={route.path}
-              element={<route.component />}
-            />
-          ))}
-          <Route key='error-page-route' path='*' element={<ErrorPage />} />
+          <Route path={PathType.PathHome} element={<Layout />}>
+            <Route key={RouteKeyType.RouteHome} index element={<Home />} />
+            {appRoutes.map((route) => {
+              if (route.private) {
+                return (
+                  <Route
+                    key={route.key}
+                    path={route.path}
+                    element={<PrivateRoute isPrivate={route.private} component={route.component} />}
+                  />
+                );
+              }
+              if (route.key === RouteKeyType.RouteRegister || route.key === RouteKeyType.RouteLogin) {
+                return (
+                  <Route
+                    key={route.key}
+                    path={route.path}
+                    element={<PrivateRoute isPrivate={route.private} component={route.component} />}
+                  />
+                );
+              }
+
+              return <Route key={route.key} path={route.path} element={route.component} />;
+            })}
+          </Route>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
   );
 };
-
-export default App;

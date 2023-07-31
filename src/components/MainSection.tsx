@@ -1,8 +1,10 @@
 import { FC } from 'react';
-import { Box, Container, Typography } from '@mui/material';
+
 import backgroundImg from '@images/mainSectionBg.jpg';
-import InputSearch from './InputSearch';
+import { Box, Container, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+
+import { InputSearch } from './InputSearch';
 
 const SectionBox = styled(Box)`
   background-image: url('${backgroundImg}');
@@ -32,7 +34,7 @@ const DisclaimerContainer = styled(Container)`
   text-align: center;
 `;
 
-const MainSection: FC = () => {
+export const MainSection: FC = () => {
   const title = 'Unlimited movies, TV shows and more.';
   const subtitle = 'Watch anywhere. Cancel anytime.';
   const text = 'Start typing for search';
@@ -55,5 +57,3 @@ const MainSection: FC = () => {
     </SectionBox>
   );
 };
-
-export default MainSection;
